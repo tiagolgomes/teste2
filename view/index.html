@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<!-- Início: head -->
+<head>
+	<!-- Início: Meta -->
+	<meta charset="utf-8">
+	<title>CDA Telecom</title>
+	<meta name="description" content="CDA Telecom">
+	<meta name="author" content="Tiago">
+	<meta name="keyword" content="CDA, SMS, Envio, Telecom">
+	<!-- Fim: Meta -->
+	<!-- Início: Mobile Specific -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Fim: Mobile Specific -->
+	<!-- Início: CSS -->
+	<link id="bootstrap-style" href="../css/bootstrap.min.css" rel="stylesheet">
+	<link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link id="base-style" href="../css/style.css" rel="stylesheet">
+	<link id="base-style-responsive" href="../css/style-responsive.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+	<!-- Fim: CSS -->
+	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<link id="ie-style" href="../css/ie.css" rel="stylesheet">
+	<![endif]-->
+	<!--[if IE 9]>
+	<link id="ie9style" href="../css/ie9.css" rel="stylesheet">
+	<![endif]-->
+	<!-- Início: Favicon -->
+	<link rel="shortcut icon" href="img/favicon.ico">
+	<!-- Fim: Favicon -->
+	<!-- Início: JavaScript-->
+	<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-migrate-1.0.0.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-ui-1.10.0.custom.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.ui.touch-punch.js"></script>
+	<script type="text/javascript" src="../js/modernizr.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.cookie.js"></script>
+	<script type="text/javascript" src='../js/fullcalendar.min.js'></script>
+	<script type="text/javascript" src='../js/jquery.dataTables.min.js'></script>
+	<script type="text/javascript" src="../js/excanvas.js"></script>
+	<script type="text/javascript" src="../js/jquery.flot.js"></script>
+	<script type="text/javascript" src="../js/jquery.flot.pie.js"></script>
+	<script type="text/javascript" src="../js/jquery.flot.stack.js"></script>
+	<script type="text/javascript" src="../js/jquery.flot.resize.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.chosen.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.uniform.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.cleditor.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.noty.js"></script>
+	<script type="text/javascript" src="../js/jquery.elfinder.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.raty.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.iphone.toggle.js"></script>
+	<script type="text/javascript" src="../js/jquery.uploadify-3.1.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.gritter.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.imagesloaded.js"></script>
+	<script type="text/javascript" src="../js/jquery.masonry.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.knob.modified.js"></script>
+	<script type="text/javascript" src="../js/jquery.sparkline.min.js"></script>
+	<script type="text/javascript" src="../js/counter.js"></script>
+	<script type="text/javascript" src="../js/retina.js"></script>
+	<script type="text/javascript" src="../js/custom.js"></script>
+	<!-- Início: Importação do Sistema Antigo -->
+	<script type="text/javascript" src="../js/jquery.base64.js"></script>
+	<script type="text/javascript" src="../js/jquery.blockUI.js"></script>
+	<script type="text/javascript" src="../js/tablesorter.js"></script>
+	<script type="text/javascript" src="../js/sortear.js"></script>
+	<script type="text/javascript" src="../js/jquery.btechco.excelexport.js"></script>
+	<script type="text/javascript" src="../js/getJS.js"></script>
+	<script type="text/javascript" src="../js/masked.js"></script>
+	<script type="text/javascript" src="../js/calendario/br.js"></script>
+	<script type="text/javascript" src="../js/jquery_ui_10_3.js"></script>
+	<script type="text/javascript" src="../js/jquery.msgBox.js"></script>
+	<!-- Fim: Importação do Sistema Antigo -->
+	<script>
+        $(document).ready(function(){
+            buscarSMSEnviados();
+           // buscarConsumoMensal();
+
+            function buscarSMSEnviados(){
+                $.ajax({
+                    type: "POST",
+                    url: "../Controller/ctl_relatorio.asp",
+                    dataType: "json",
+                    async: false,
+                    data: {
+                        tipo : "gerarRelatorioSMSEnviados"
+                    },
+                    success: function(json){
+                        if(json.length > 0){
+                            for(i in json){
+                                var tamanho = parseInt(json[i].qtde_msg_enviadas) /200;
+                                tamanho = Math.trunc(tamanho);
+
+                                $("#sms_enviados").append("<div class='singleBar'>"+
+                                    "<div class='bar'>"+
+                                    "<div class='value' style='height: "+tamanho+"px;'>"+
+                                    "<span style='display: inline;'>"+json[i].qtde_msg_enviadas+"</span>"+
+                                    "</div>"+
+                                    "</div>"+
+                                    "<div class='title'>"+json[i].data_envio+"</div>"+
+                                    "</div>"
+                                );
+                            }
+                        }
+                    }
+                });
+            }
+
+            function buscarConsumoMensal(){
+                $.ajax({
+                    type: "POST",
+                    url: "../Controller/ctl_relatorio.asp",
+                    dataType: "json",
+                    async: false,
+                    data: {
+                        tipo : "buscarConsumoMensal"
+                    },
+                    success: function(json){
+                        if(json.length > 0){
+                            var total_sms_mes = 0;
+                            for(i in json){
+
+                                var tamanho = parseInt(json[i].qtde_msg_enviadas) / 400;
+                                tamanho = Math.trunc(tamanho);
+                                qtde_msg_enviadas_mes_atual = qtde_msg_enviadas_mes_atual + "," + json[i].qtde_msg_enviadas;
+                                total_sms_mes = parseInt(total_sms_mes + json[i].qtde_msg_enviadas);
+
+                                $("#qtde_msg_enviadas_mes_atual").append("<div class='singleBar'>"+
+                                    "<div class='bar' style='width:40px; height: 100px;'>"+
+                                    "<div class='value' style='height: "+tamanho+"px;'>"+
+                                    "<span style='display: inline;'>"+json[i].qtde_msg_enviadas+"</span>"+
+                                    "</div>"+
+                                    "</div>"+
+                                    "<div class='title'>"+json[i].data_envio+"</div>"+
+                                    "</div>"
+                                );
+
+
+
+                            }
+                        }
+                    }
+                });
+            }
+
+
+
+        });
+	</script>
+	<!-- Fim: JavaScript-->
+</head>
+<!-- Fim: head -->
+<!-- Início: body -->
+<body>
+	<!-- Início: Header -->
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="/view/index.html">
+					<img class="avatar" alt="CDATelecom" width="114" height="50" src="../img/cdap.png">
+				</a>
+				<!-- Início: Header Menu -->
+				<div class="nav-no-collapse header-nav">
+					<ul class="nav pull-right">
+						<!-- Início: User Dropdown -->
+						<li class="dropdown">
+							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+								<i class="halflings-icon white user"></i> Developer
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-menu-title">
+ 									<span>Configurações</span>
+								</li>
+								<li><a href="#"><i class="halflings-icon user"></i> Perfil</a></li>
+								<li><a href="../login.html"><i class="halflings-icon off"></i> Sair</a></li>
+							</ul>
+						</li>
+						<!-- Fim: User Dropdown -->
+					</ul>
+				</div>
+				<!-- Fim: Header Menu -->
+			</div>
+		</div>
+	</div>
+	<!-- Fim: Header -->
+	<!-- Início: container-fluid-full -->
+    <div class="container-fluid-full">
+        <!-- Início: row-fluid -->
+        <div class="row-fluid">
+			<!-- Início: Main Menu -->
+			<div id="sidebar-left" class="span2">
+				<div class="nav-collapse sidebar-nav">
+					<ul class="nav nav-tabs nav-stacked main-menu">
+						<li><a href="/view/index.html"><i class="icon-bar-chart"></i><span class="hidden-tablet"> DashBoard</span></a></li>
+						<li>
+							<a class="dropmenu" href="#"><i class="icon-envelope"></i><span class="hidden-tablet"> Envio de SMS</span></a>
+							<ul>
+								<li><a class="submenu" href="/view/enviosmsindividual.html"><i class="icon-file"></i><span class="hidden-tablet"> SMS Individual</span></a></li>
+								<li><a class="submenu" href="/view/enviosmslote.html"><i class="icon-copy"></i><span class="hidden-tablet"> SMS em Lote</span></a></li>
+							</ul>	
+						</li>
+						<!-- Início: Mensagem Padrão -->
+						<!--
+						<li>
+							<a class="dropmenu" href="#"><i class="icon-envelope-alt"></i><span class="hidden-tablet"> Mensagem Padrão</span></a>
+							<ul>
+								<li><a class="submenu" href="/view/padraomodelos.html"><i class="icon-list"></i><span class="hidden-tablet"> Modelos</span></a></li>
+								<li><a class="submenu" href="/view/padraocadastrar.html"><i class="icon-plus-sign"></i><span class="hidden-tablet"> Cadastrar</span></a></li>
+							</ul>
+						</li>
+						-->
+						<!-- Fim: Mensagem Padrão -->
+						<li>
+							<a class="dropmenu" href="#"><i class="icon-star"></i><span class="hidden-tablet"> Favoritos</span></a>
+							<ul>
+								<li><a class="submenu" href="/view/blacklist.html"><i class="icon-eye-close"></i><span class="hidden-tablet"> Black List</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="dropmenu" href="#"><i class="icon-tasks"></i><span class="hidden-tablet"> Relatórios</span></a>
+							<ul>
+								<li><a class="submenu" href="/view/relsmsenviado.html"><i class="icon-upload-alt"></i><span class="hidden-tablet"> SMS Enviado</span></a></li>
+								<li><a class="submenu" href="/view/relfilaagend.html"><i class="icon-align-justify"></i><span class="hidden-tablet"> Fila de Agendamento</span></a></li>
+								<li><a class="submenu" href="/view/relretorno.html"><i class="icon-download-alt"></i><span class="hidden-tablet"> Retorno</span></a></li>
+							</ul>
+						</li>
+						<li><a href="../login.html"><i class="icon-lock"></i><span class="hidden-tablet"> Sair</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Fim: Main Menu -->
+            <!-- Início: noScript -->
+			<noscript>
+				<div class="alert alert-block span10">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+				</div>
+			</noscript>
+            <!-- Fim: noScript -->
+			<!-- Início: Conteúdo -->
+			<div id="content" class="span10">
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="icon-home"></i>
+                        <a href="/view/index.html">Home</a>
+                        <i class="icon-angle-right"></i>
+                    </li>
+                    <li><a href="/view/index.html">Dashboard</a></li>
+                </ul>
+                <!-- Início: Gráfico Superior -->
+                <div class="row-fluid">
+                    <div class="span10 statbox blue" onTablet="span10" onDesktop="span10">
+                        <div class="boxchart2">5,6,7,2,0,4,2,4,8,2,3,10,2,5,6,7,2,1,4,2,4,8,2,3,3,2,5,6,7,2,3</div>
+                        <div class="number">854</div>
+                        <div class="title">   Total de SMS <br>Enviados no Mês</div>
+                    </div>
+                    <div class="span2 statbox blue" onTablet="span2" onDesktop="span2">
+                        <!-- <div class="boxchart">1,2,6,4,0,8,2,4,5,3,1,7,5,1,2,6,4,2,8,2,4,5,3,1,7,5,1,2,6,4</div> -->
+                        <div class="number">123</div>
+                        <div class="title">Saldo de SMS</div>
+                    </div>
+                </div>
+                <!-- Fim: Gráfico Superior -->
+                <!-- Início: Gráfico Inferior -->
+				<div class="row-fluid">
+					<div class="widget blueDark span12" onTablet="span12" onDesktop="span12">
+						<h2><span class="glyphicons envelope"><i></i></span> SMS Enviados</h2>
+						<hr>
+						<div class="content">
+							<div class="verticalChart" id="sms_enviados">
+							</div>
+						</div>
+					</div>
+				</div>
+                <!-- Fim: Gráfico Inferior -->
+            </div>
+            <!-- Fim: Conteúdo -->
+		</div>
+        <!--Fim: row-fluid-->
+    </div>
+    <!-- Fim: container-fluid-full -->
+	<!-- Início: Rodapé-->
+	<footer>
+		<p>
+			<span style="text-align:left;float:left">&copy; 2018 <a href="#####" alt="Bootstrap_Metro_Dashboard">CDA Telecom</a></span>
+		</p>
+	</footer>
+	<!-- Fim: Rodapé-->
+</body>
+<!-- Fim: body -->
+</html>

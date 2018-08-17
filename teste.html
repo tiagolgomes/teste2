@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Início: Meta -->
+    <meta charset="utf-8">
+    <title>CDA Telecom</title>
+    <meta name="description" content="CDA Telecom">
+    <meta name="author" content="Tiago">
+    <meta name="keyword" content="CDA, SMS, Envio, Telecom">
+    <!-- Fim: Meta -->
+    <!-- Início: Mobile Specific -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fim: Mobile Specific -->
+    <!-- Início: CSS -->
+    <link id="bootstrap-style" href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link id="base-style" href="css/style.css" rel="stylesheet">
+    <link id="base-style-responsive" href="css/style-responsive.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+    <!-- Fim: CSS -->
+    <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <link id="ie-style" href="css/ie.css" rel="stylesheet">
+    <![endif]-->
+    <!--[if IE 9]>
+    <link id="ie9style" href="css/ie9.css" rel="stylesheet">
+    <![endif]-->
+    <!-- Início: Favicon -->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <!-- Fim: Favicon -->
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body>
+<div id="conteudo">
+    <span class="destaqueAzul">Nova Campanha</span>
+    <br/><br/>
+    <p><b>Por favor, preencha o formulário abaixo.
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" id="informacoes" value="?"/>
+    </b></p>
+
+    <hr/>
+    <table class="font_table">
+        <tr>
+            <td>
+                <span>E-mail de retorno</span>
+                &nbsp;&nbsp;
+            </td>
+            <td>
+                <input type="text" id="email_retorno" name="email_retorno" class="email" size="40%" />
+                &nbsp;&nbsp;&nbsp;
+                <span class="destaqueVermleho" id="email_invalido">E-mail inválido</span>
+                <span class="destaqueVerde" id="email_valido">E-mail válido</span>
+                <input type="checkbox" id="fl_envia_retorno">&nbsp;&nbsp;Não receber notificação de retorno&nbsp;&nbsp;</input>
+
+                <!--
+
+                    <span>URL Shortener</span>
+                    &nbsp;&nbsp;
+                    <input type="text" id="url_curta" name="url_curta"  size="50%"/>
+                    &nbsp;&nbsp;&nbsp;
+                !-->
+                <input type="checkbox" id="incluir_numeroWhats">&nbsp;&nbsp;Incluir Comunicação Whats?</input>
+            </td>
+        </tr>
+    </table>
+    <br/>
+    <table class="font_table" id="table_comunicao_whats">
+        <tr>
+            <td>
+                <span>Número Retorno</span>
+                &nbsp;&nbsp;&nbsp;
+            </td>
+            <td>
+                <input type="text" id="numero_retorno" name="numero_retorno"  size="20%"/>
+            </td>
+            <td>
+                &nbsp;&nbsp;&nbsp;
+                <span>Mensagem Retorno</span>
+                &nbsp;
+                <input type="text" id="mensagem_retorno" name="mensagem_retorno"  size="70%"/>
+            </td>
+        </tr>
+    </table>
+
+    <hr/>
+    <div id="campanhas_padrao" >
+        <table  id="resultCampanhaPadraoSelecao" cellspacing="0" border="1" width="100%">
+            <tr class="font_table cabecalhoTabela">
+                <td></td>
+                <td>
+                    <center>Texto</center>
+                </td>
+                <td></td>
+            </tr>
+            <tbody id="resultCampanhaPadrao"></tbody>
+        </table>
+    </div>
+    <br/>
+    <p><b>Texto:</b></p>
+    <textarea class="texto_campanha" name="texto_campanha" id="texto_campanha"></textarea>
+    <table class="font_table">
+        <tr class="font_table">
+            <td>Arquivo:</td>
+            <td><input type="file" id="fileUpload" class="font_table"/></td>
+        </tr>
+    </table>
+    <input type="button" id="enviar_campanha" class="botoes" value="Enviar" />
+    <input type="hidden" id="urlCode" />
+</div>
+<!-- Início: Rodapé-->
+<footer>
+    <p>
+        <span style="text-align:left;float:left">&copy; 2018 <a href="#####" alt="Bootstrap_Metro_Dashboard">CDA Telecom</a></span>
+    </p>
+</footer>
+<!-- Fim: Rodapé-->
+<!-- Início: JavaScript-->
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-migrate-1.0.0.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.10.0.custom.min.js"></script>
+<script type="text/javascript" src="js/jquery.ui.touch-punch.js"></script>
+<script type="text/javascript" src="js/modernizr.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src='js/fullcalendar.min.js'></script>
+<script type="text/javascript" src='js/jquery.dataTables.min.js'></script>
+<script type="text/javascript" src="js/excanvas.js"></script>
+<script type="text/javascript" src="js/jquery.flot.js"></script>
+<script type="text/javascript" src="js/jquery.flot.pie.js"></script>
+<script type="text/javascript" src="js/jquery.flot.stack.js"></script>
+<script type="text/javascript" src="js/jquery.flot.resize.min.js"></script>
+<script type="text/javascript" src="js/jquery.chosen.min.js"></script>
+<script type="text/javascript" src="js/jquery.uniform.min.js"></script>
+<script type="text/javascript" src="js/jquery.cleditor.min.js"></script>
+<script type="text/javascript" src="js/jquery.noty.js"></script>
+<script type="text/javascript" src="js/jquery.elfinder.min.js"></script>
+<script type="text/javascript" src="js/jquery.raty.min.js"></script>
+<script type="text/javascript" src="js/jquery.iphone.toggle.js"></script>
+<script type="text/javascript" src="js/jquery.uploadify-3.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.gritter.min.js"></script>
+<script type="text/javascript" src="js/jquery.imagesloaded.js"></script>
+<script type="text/javascript" src="js/jquery.masonry.min.js"></script>
+<script type="text/javascript" src="js/jquery.knob.modified.js"></script>
+<script type="text/javascript" src="js/jquery.sparkline.min.js"></script>
+<script type="text/javascript" src="js/counter.js"></script>
+<script type="text/javascript" src="js/retina.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+<!-- Fim: JavaScript-->
+</body>
+</html>

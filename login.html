@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<!-- Início: Head -->
+<head>
+	<!-- Início: Meta -->
+	<meta charset="utf-8">
+	<title>CDA</title>
+	<meta name="description" content="CDA">
+	<meta name="author" content="Tiago">
+	<meta name="keyword" content="CDA, SMS, Envio">
+	<!-- Fim: Meta -->
+	<!-- Início: Mobile Specific -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Fim: Mobile Specific -->
+	<!-- Início: CSS -->
+	<link id="bootstrap-style" href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link id="base-style" href="css/style.css" rel="stylesheet">
+	<link id="base-style-responsive" href="css/style-responsive.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+	<!-- Fim: CSS -->
+	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<link id="ie-style" href="css/ie.css" rel="stylesheet">
+	<![endif]-->
+	<!--[if IE 9]>
+	<link id="ie9style" href="css/ie9.css" rel="stylesheet">
+	<![endif]-->
+	<!-- Início: Favicon -->
+	<link rel="shortcut icon" href="img/favicon.ico">
+	<!-- Fim: Favicon -->
+	<style type="text/css">
+		body { background: url(img/bg-login.jpg) !important; }
+	</style>
+	<!-- Início: JavaScript-->
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-migrate-1.0.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.10.0.custom.min.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.touch-punch.js"></script>
+	<script type="text/javascript" src="js/modernizr.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<script type="text/javascript" src='js/fullcalendar.min.js'></script>
+	<script type="text/javascript" src='js/jquery.dataTables.min.js'></script>
+	<script type="text/javascript" src="js/excanvas.js"></script>
+	<script type="text/javascript" src="js/jquery.flot.js"></script>
+	<script type="text/javascript" src="js/jquery.flot.pie.js"></script>
+	<script type="text/javascript" src="js/jquery.flot.stack.js"></script>
+	<script type="text/javascript" src="js/jquery.flot.resize.min.js"></script>
+	<script type="text/javascript" src="js/jquery.chosen.min.js"></script>
+	<script type="text/javascript" src="js/jquery.uniform.min.js"></script>
+	<script type="text/javascript" src="js/jquery.cleditor.min.js"></script>
+	<script type="text/javascript" src="js/jquery.noty.js"></script>
+	<script type="text/javascript" src="js/jquery.elfinder.min.js"></script>
+	<script type="text/javascript" src="js/jquery.raty.min.js"></script>
+	<script type="text/javascript" src="js/jquery.iphone.toggle.js"></script>
+	<script type="text/javascript" src="js/jquery.uploadify-3.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.gritter.min.js"></script>
+	<script type="text/javascript" src="js/jquery.imagesloaded.js"></script>
+	<script type="text/javascript" src="js/jquery.masonry.min.js"></script>
+	<script type="text/javascript" src="js/jquery.knob.modified.js"></script>
+	<script type="text/javascript" src="js/jquery.sparkline.min.js"></script>
+	<script type="text/javascript" src="js/counter.js"></script>
+	<script type="text/javascript" src="js/retina.js"></script>
+	<script type="text/javascript" src="js/custom.js"></script>
+	<script type="text/javascript" src="js/jquery_min_1_9_1.js"></script>
+	<script type="text/javascript" src="js/jquery2.js"></script>
+	<!-- Início: Importação do Sistema Antigo -->
+	<script type="text/javascript" src="../js/jquery.base64.js"></script>
+	<script type="text/javascript" src="../js/jquery.blockUI.js"></script>
+	<script type="text/javascript" src="../js/tablesorter.js"></script>
+	<script type="text/javascript" src="../js/sortear.js"></script>
+	<script type="text/javascript" src="../js/jquery.btechco.excelexport.js"></script>
+	<script type="text/javascript" src="../js/getJS.js"></script>
+	<script type="text/javascript" src="../js/masked.js"></script>
+	<script type="text/javascript" src="../js/calendario/br.js"></script>
+	<script type="text/javascript" src="../js/jquery_ui_10_3.js"></script>
+	<script type="text/javascript" src="../js/jquery.msgBox.js"></script>
+	<!-- Fim: Importação do Sistema Antigo -->
+	<!-- Início: Validação -->
+	<script>
+        $(document).ready(function(){
+            $("#senha_invalida").hide();
+            $("#login").click(function(){
+                login();
+            });
+        });
+        function login() {
+            var aux = $("#usuario").val();
+            $("#senha_invalida").hide();
+            if($("#usuario").val()!= ""){
+                $.ajax({
+                    type: "POST",
+                    url: "../Controller/ctl_login.asp",
+                    dataType: "json",
+                    async: false,
+                    data: 	{
+                        tipo: "ValidaUsuario",
+                        usuario : $("#usuario").val(),
+                        senha: $("#senha").val(),
+                        cd_empresa : $("#cd_empresa").val()
+                    },
+                    success: function(json){
+                        if(json[0].id_usuario != ""){
+                            if(json[0].id_usuario == "1"){
+                                location.href = "/view/index.html";
+                            }else{
+                                location.href = "../login.html";
+                            }
+                        }else{
+                            $("#senha_invalida").show();
+                        }
+                    }
+                });
+            }
+        }
+        $(document).keydown(function(e){
+            if (e.which == 13){
+                login();
+            }
+        });
+	</script>
+	<!-- Fim: Validação -->
+	<!-- Fim: JavaScript -->
+</head>
+<!-- Fim: Head -->
+<!-- Início: Body -->
+<body>
+	<div class="container-fluid-full">
+		<div class="row-fluid">
+			<div class="row-fluid">
+				<div class="login-box">
+					<div class="icons">
+						<br>
+					</div>
+					<div id="senha_invalida">
+						<div class="alert alert-error">
+							<button type="button" class="close" data-dismiss="alert"></button>
+							<strong>Informações Invalidas!</strong> Favor preencha os campos novamente.
+						</div>
+					</div>
+					<h2>Acessar sua conta</h2>
+					<div>
+						<div class="input-prepend" title="Cod">
+							<span class="add-on"><i class="halflings-icon home"></i></span>
+							<input class="input-large span10" name="empresa" id="cd_empresa" type="text" placeholder="Código Empresa"/>
+						</div>
+						<div class="input-prepend" title="Username">
+							<span class="add-on"><i class="halflings-icon user"></i></span>
+							<input class="input-large span10" name="username" id="usuario" type="text" placeholder="Usuário"/>
+						</div>
+						<div class="clearfix"></div>
+						<div class="input-prepend" title="Password">
+							<span class="add-on"><i class="halflings-icon lock"></i></span>
+							<input class="input-large span10" name="password" id="senha" type="password" placeholder="Senha"/>
+						</div>
+						<div class="clearfix"></div>
+						<div class="button-login">
+							<button class="btn btn-primary" id="login">Acessar</button>
+						</div>
+						<div class="clearfix"></div>
+						<hr>
+					</div>
+				</div>
+				<!--/span-->
+			</div>
+			<!--/row-->
+		</div>
+		<!--/.fluid-container-->
+	</div>
+	<!--/fluid-row-->
+</body>
+<!-- Fim: Body -->
+</html>

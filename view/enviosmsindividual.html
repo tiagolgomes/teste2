@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<!-- Início: head -->
+<head>
+	<!-- Início: Meta -->
+	<meta charset="utf-8">
+	<title>CDA Telecom</title>
+	<meta name="description" content="CDA Telecom">
+	<meta name="author" content="Tiago">
+	<meta name="keyword" content="CDA, SMS, Envio, Telecom">
+	<!-- Fim: Meta -->
+	<!-- Início: Mobile Specific -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Fim: Mobile Specific -->
+	<!-- Início: CSS -->
+	<link id="bootstrap-style" href="../css/bootstrap.min.css" rel="stylesheet">
+	<link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link id="base-style" href="../css/style.css" rel="stylesheet">
+	<link id="base-style-responsive" href="../css/style-responsive.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+	<!-- Fim: CSS -->
+	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<link id="ie-style" href="../css/ie.css" rel="stylesheet">
+	<![endif]-->
+	<!--[if IE 9]>
+	<link id="ie9style" href="../css/ie9.css" rel="stylesheet">
+	<![endif]-->
+	<!-- Início: Favicon -->
+	<link rel="shortcut icon" href="img/favicon.ico">
+	<!-- Fim: Favicon -->
+	<!-- Início: JavaScript-->
+	<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-migrate-1.0.0.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-ui-1.10.0.custom.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.ui.touch-punch.js"></script>
+	<script type="text/javascript" src="../js/modernizr.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.cookie.js"></script>
+	<script type="text/javascript" src='../js/fullcalendar.min.js'></script>
+	<script type="text/javascript" src='../js/jquery.dataTables.min.js'></script>
+	<script type="text/javascript" src="../js/excanvas.js"></script>
+	<script type="text/javascript" src="../js/jquery.flot.js"></script>
+	<script type="text/javascript" src="../js/jquery.flot.pie.js"></script>
+	<script type="text/javascript" src="../js/jquery.flot.stack.js"></script>
+	<script type="text/javascript" src="../js/jquery.flot.resize.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.chosen.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.uniform.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.cleditor.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.noty.js"></script>
+	<script type="text/javascript" src="../js/jquery.elfinder.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.raty.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.iphone.toggle.js"></script>
+	<script type="text/javascript" src="../js/jquery.uploadify-3.1.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.gritter.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.imagesloaded.js"></script>
+	<script type="text/javascript" src="../js/jquery.masonry.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.knob.modified.js"></script>
+	<script type="text/javascript" src="../js/jquery.sparkline.min.js"></script>
+	<script type="text/javascript" src="../js/counter.js"></script>
+	<script type="text/javascript" src="../js/retina.js"></script>
+	<script type="text/javascript" src="../js/custom.js"></script>
+	<!-- Início: Importação do Sistema Antigo -->
+	<script type="text/javascript" src="../js/jquery.base64.js"></script>
+	<script type="text/javascript" src="../js/jquery.blockUI.js"></script>
+	<script type="text/javascript" src="../js/tablesorter.js"></script>
+	<script type="text/javascript" src="../js/sortear.js"></script>
+	<script type="text/javascript" src="../js/jquery.btechco.excelexport.js"></script>
+	<script type="text/javascript" src="../js/getJS.js"></script>
+	<script type="text/javascript" src="../js/masked.js"></script>
+	<script type="text/javascript" src="../js/calendario/br.js"></script>
+	<script type="text/javascript" src="../js/jquery_ui_10_3.js"></script>
+	<script type="text/javascript" src="../js/jquery.msgBox.js"></script>
+	<!-- Fim: Importação do Sistema Antigo -->
+	<script>
+		$(document).ready(function () {
+            $("#envio_concluido").hide();
+		    $("#telefone_invalido").hide();
+            $("#contrato_invalido").hide();
+            $("#texto_invalido").hide();
+            $("#texto_grande").hide();
+            $("#carregando").hide();
+
+            function validar_telefone() {
+                $("#telefone_invalido").hide();
+                var aux = $("#telenv").val();
+                var status = false;
+                if(aux == ""){
+                    $("#telefone_invalido").show();
+                    status = false;
+                }
+                else{
+                    if(aux.length != 11){
+                        $("#telefone_invalido").show();
+                        status = false;
+                    }
+                    else{
+                        if($.isNumeric(aux)){
+                            status = true;
+                        }
+                        else{
+                            $("#telefone_invalido").show();
+                            status = false;
+						}
+					}
+                }
+                return status;
+            }
+
+            function validar_contrato() {
+                $("#contrato_invalido").hide();
+                var aux = $("#contr").val();
+                var status = false;
+                if(aux == ""){
+                    $("#contrato_invalido").show();
+                    status = false;
+                }
+                else{
+					if($.isNumeric(aux)){
+					    status = true;
+                    }
+                    else{
+                        $("#contrato_invalido").show();
+                        status = false;
+					}
+                }
+                return status;
+            }
+
+            function validar_mensagem() {
+                $("#texto_invalido").hide();
+                $("#texto_grande").hide();
+                var status = false;
+                if($("#mensagem").val() == ""){
+                    $("#texto_invalido").show();
+                    status = false;
+                }
+                else{
+                    var limite = 160;
+                    var valor = $("#mensagem").val();
+                    var tamanho = valor.length + 1;
+                    if(tamanho > limite){
+                        $("#texto_grande").show();
+                        status = false;
+                    }
+					else{
+						status = true;
+                    }
+                }
+                return status;
+            }
+
+            function validarcadastro(){
+                $("#envio_concluido").hide();
+                var status = false;
+                validar_telefone();
+                validar_contrato();
+                validar_mensagem();
+                if(validar_telefone()){
+                    if(validar_contrato()){
+                        if(validar_mensagem()){
+                            status = true;
+						}
+					}
+				}
+                return status;
+			}
+
+            $("#enviar_sms_individual").click(function(){
+                if(validarcadastro()){
+                    $("#envio_concluido").hide();
+					salvarEnvioAvulso();
+				}
+			});
+
+            function salvarEnvioAvulso(){
+                $("#carregando").show();
+                $.ajax({
+                    type: "POST",
+                    url: "../Controller/ctl_mensagem.asp",
+                    dataType: "json",
+                    async: false,
+                    data: 	{
+                        tipo: "salvarMensagem",
+                        telefone: $("#telenv").val(),
+                        mensagem: $("#mensagem").val(),
+                        nu_contrato: $("#contr").val()
+                    },
+                    success: function(json){
+                        alert(json[0].retorno_classe);
+                        llimparDados();
+                        $.unblockUI();
+                        $("#carregando").hide();
+                        $("#envio_concluido").show();
+                    },
+                    error: function (error) {
+                        alert('ENTRE EM CONTATO COM O SUPORTE E INFORME O ERRO:\n"' + eval(error));
+                        $("#carregando").hide();
+                    }
+                });
+            }
+            function llimparDados(){
+                $("#telenv").val("");
+                $("#mensagem").val("");
+                $("#contr").val("");
+            }
+        });
+	</script>
+	<!-- Fim: JavaScript-->
+</head>
+<!-- Fim: head -->
+<!-- Início: body -->
+<body>
+<!-- Início: Header -->
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="container-fluid">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<a class="brand" href="/view/index.html">
+				<img class="avatar" alt="CDATelecom" width="114" height="50" src="../img/cdap.png">
+			</a>
+			<!-- Início: Header Menu -->
+			<div class="nav-no-collapse header-nav">
+				<ul class="nav pull-right">
+					<!-- Início: User Dropdown -->
+					<li class="dropdown">
+						<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+							<i class="halflings-icon white user"></i> Developer
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li class="dropdown-menu-title">
+								<span>Configurações</span>
+							</li>
+							<li><a href="#"><i class="halflings-icon user"></i> Perfil</a></li>
+							<li><a href="../login.html"><i class="halflings-icon off"></i> Sair</a></li>
+						</ul>
+					</li>
+					<!-- Fim: User Dropdown -->
+				</ul>
+			</div>
+			<!-- Fim: Header Menu -->
+		</div>
+	</div>
+</div>
+<!-- Fim: Header -->
+<!-- Início: container-fluid-full -->
+<div class="container-fluid-full">
+	<!-- Início: row-fluid -->
+	<div class="row-fluid">
+		<!-- Início: Main Menu -->
+		<div id="sidebar-left" class="span2">
+			<div class="nav-collapse sidebar-nav">
+				<ul class="nav nav-tabs nav-stacked main-menu">
+					<li><a href="/view/index.html"><i class="icon-bar-chart"></i><span class="hidden-tablet"> DashBoard</span></a></li>
+					<li>
+						<a class="dropmenu" href="#"><i class="icon-envelope"></i><span class="hidden-tablet"> Envio de SMS</span></a>
+						<ul>
+							<li><a class="submenu" href="/view/enviosmsindividual.html"><i class="icon-file"></i><span class="hidden-tablet"> SMS Individual</span></a></li>
+							<li><a class="submenu" href="/view/enviosmslote.html"><i class="icon-copy"></i><span class="hidden-tablet"> SMS em Lote</span></a></li>
+						</ul>
+					</li>
+					<!-- Início: Mensagem Padrão -->
+					<!--
+                    <li>
+                        <a class="dropmenu" href="#"><i class="icon-envelope-alt"></i><span class="hidden-tablet"> Mensagem Padrão</span></a>
+                        <ul>
+                            <li><a class="submenu" href="/view/padraomodelos.html"><i class="icon-list"></i><span class="hidden-tablet"> Modelos</span></a></li>
+                            <li><a class="submenu" href="/view/padraocadastrar.html"><i class="icon-plus-sign"></i><span class="hidden-tablet"> Cadastrar</span></a></li>
+                        </ul>
+                    </li>
+                    -->
+					<!-- Fim: Mensagem Padrão -->
+					<li>
+						<a class="dropmenu" href="#"><i class="icon-star"></i><span class="hidden-tablet"> Favoritos</span></a>
+						<ul>
+							<li><a class="submenu" href="/view/blacklist.html"><i class="icon-eye-close"></i><span class="hidden-tablet"> Black List</span></a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="dropmenu" href="#"><i class="icon-tasks"></i><span class="hidden-tablet"> Relatórios</span></a>
+						<ul>
+							<li><a class="submenu" href="/view/relsmsenviado.html"><i class="icon-upload-alt"></i><span class="hidden-tablet"> SMS Enviado</span></a></li>
+							<li><a class="submenu" href="/view/relfilaagend.html"><i class="icon-align-justify"></i><span class="hidden-tablet"> Fila de Agendamento</span></a></li>
+							<li><a class="submenu" href="/view/relretorno.html"><i class="icon-download-alt"></i><span class="hidden-tablet"> Retorno</span></a></li>
+						</ul>
+					</li>
+					<li><a href="../login.html"><i class="icon-lock"></i><span class="hidden-tablet"> Sair </span></a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- Fim: Main Menu -->
+		<!-- Início: noScript -->
+		<noscript>
+			<div class="alert alert-block span10">
+				<h4 class="alert-heading">Warning!</h4>
+				<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+			</div>
+		</noscript>
+		<!-- Fim: noScript -->
+		<!-- Início: Conteúdo -->
+		<div id="content" class="span10">
+			<ul class="breadcrumb">
+				<li>
+					<i class="icon-home"></i>
+					<a href="/view/index.html">Home</a>
+					<i class="icon-angle-right"></i>
+				</li>
+				<li><a href="/view/enviosmsindividual.html">Envio de SMS - SMS Individual</a></li>
+			</ul>
+			<!-- Início: row-fluid -->
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>SMS Individual - Mensagem Avulsa</h2>
+						<div class="box-icon">
+							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+						<form class="form-horizontal">
+							<fieldset>
+								<div>
+									<h2>Por favor, preencha o formulário abaixo.</h2>
+									<hr>
+								</div>
+								<div id="envio_concluido">
+									<div class="alert alert-success">
+										<button type="button" class="close" data-dismiss="alert"></button>
+										<strong>Campanha cadastrada com sucecsso! O envio será realizado em alguns minutos!</strong>
+									</div>
+								</div>
+								<div id="carregando">
+									<br>
+									<span><h2><img src="../img/carregando_dash.gif" width="200" height="200" ></h2></span>
+									<br>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Telefone(DDD+Número) </label>
+									<div class="controls">
+										<input type="text" class="span7 typeahead" id="telenv">
+									</div>
+								</div>
+								<div class="controls" id="telefone_invalido">
+									<div class="alert alert-error">
+										<button type="button" class="close" data-dismiss="alert"></button>
+										<strong>Número de Telefone Inválido!</strong> Por favor preencha o campo com a informação correta.
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Contrato </label>
+									<div class="controls">
+										<input type="text" class="span7 typeahead" id="contr">
+									</div>
+								</div>
+								<div class="controls" id="contrato_invalido">
+									<div class="alert alert-error">
+										<button type="button" class="close" data-dismiss="alert"></button>
+										<strong>Número de Contrato Inválido</strong> Por favor preencha o campo com a informação correta.
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Texto </label>
+									<div class="controls">
+										<textarea class="textcampanha" id="mensagem" rows="4"></textarea>
+									</div>
+									<div class="controls">
+										<div id="texto_invalido">
+											<br>
+											<div class="alert alert-error">
+												<button type="button" class="close" data-dismiss="alert"></button>
+												<strong>Informação Inválida!</strong> Por favor preencha o campo com a informação correta.
+											</div>
+										</div>
+									</div>
+									<div class="controls">
+										<div id="texto_grande">
+											<br>
+											<div class="alert alert-error">
+												<button type="button" class="close" data-dismiss="alert"></button>
+												<strong>O campo texto aceita somente 160 caracteres!</strong> Por favor preencha o campo com a informação correta.
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="form-actions">
+									<button type="button" class="btn btn-primary" id="enviar_sms_individual">Enviar</button>
+									<button type="reset" class="btn">Cancelar</button>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- Fim: row-fluid -->
+			<!-- Início: row-fluid -->
+			<div class="row-fluid">
+
+			</div>
+			<!-- Fim: row-fluid-->
+		</div>
+		<!-- Fim: Conteúdo -->
+	</div>
+	<!--Fim: row-fluid-->
+</div>
+<!-- Fim: container-fluid-full -->
+<!-- Início: Rodapé -->
+<footer>
+	<p>
+		<span style="text-align:left;float:left">&copy; 2018 <a href="#####" alt="Bootstrap_Metro_Dashboard">CDA Telecom</a></span>
+	</p>
+</footer>
+<!-- Fim: Rodapé -->
+</body>
+<!-- Fim: body -->
+</html>

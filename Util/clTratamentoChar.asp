@@ -1,0 +1,53 @@
+<%
+class TratamentoChar
+	public function trataCharPost(auxUsuario)
+	
+		auxUsuario = replace(auxUsuario,"Ã¡"		,"á")
+		auxUsuario = replace(auxUsuario,"Ã "		,"à")
+		auxUsuario = replace(auxUsuario,"Ã£"		,"ã")
+		auxUsuario = replace(auxUsuario,"Ã¢"		,"â")
+		auxUsuario = replace(auxUsuario,"Ã¤"		,"ä")
+		auxUsuario = replace(auxUsuario,"Ã©"		,"é")
+		auxUsuario = replace(auxUsuario,"Ã¨"		,"è")
+		auxUsuario = replace(auxUsuario,"Ãª"		,"ê")
+		auxUsuario = replace(auxUsuario,"Ã«"		,"ë")
+		auxUsuario = replace(auxUsuario,"Ã­"		,"í") 
+		auxUsuario = replace(auxUsuario,"Ã¬"		,"ì")
+		auxUsuario = replace(auxUsuario,"Ã®"		,"î")
+		auxUsuario = replace(auxUsuario,"Ã¯"		,"ï")
+		auxUsuario = replace(auxUsuario,"Ã³"		,"ó")
+		auxUsuario = replace(auxUsuario,"Ã²"		,"ò")
+		auxUsuario = replace(auxUsuario,"Ãµ"		,"õ")
+		auxUsuario = replace(auxUsuario,"Ã´"		,"ô")
+		auxUsuario = replace(auxUsuario,"Ã¶"		,"ö")
+		auxUsuario = replace(auxUsuario,"Ãº"		,"ú")
+		auxUsuario = replace(auxUsuario,"Ã¹"		,"ù")
+		auxUsuario = replace(auxUsuario,"Ã»"		,"û")
+		auxUsuario = replace(auxUsuario,"Ã¼"		,"ü")
+		auxUsuario = replace(auxUsuario,"Ã§"		,"ç")
+		auxUsuario = replace(auxUsuario,"Ã±"		,"ñ")
+		auxUsuario = replace(auxUsuario,"Ã½"		,"ý")
+		auxUsuario = replace(auxUsuario,"Ã¿"		,"ÿ")
+		auxUsuario = replace(auxUsuario,"Ã‡"		,"Ç")
+		auxUsuario = replace(auxUsuario,"Ãƒ"		,"Ã")
+		auxUsuario = replace(auxUsuario,"Ã•"		,"Õ")
+		auxUsuario = replace(auxUsuario,"ÄŒ"		,"È")
+		auxUsuario = replace(auxUsuario,"Ã‰"		,"É")
+		auxUsuario = replace(auxUsuario,"Âº"		,"º")
+		auxUsuario = replace(auxUsuario,"Â°"		,"°")
+		auxUsuario = replace(auxUsuario,"Ã"		,"Í")
+		auxUsuario = replace(auxUsuario,"â€“"		,"-")
+		auxUsuario = replace(auxUsuario,"Ã€"		,"À")	
+		'auxUsuario = replace(auxUsuario,"Ã"		    ,"Á")
+		auxUsuario = replace(auxUsuario,"Á‚"	    ,"Â")
+		auxUsuario = replace(auxUsuario,"Á‚"	    ,"Â")
+		auxUsuario = replace(auxUsuario,"Á”"	    ,"Ô")
+		auxUsuario = replace(auxUsuario,"Áš"	    ,"Ú")
+		auxUsuario = replace(auxUsuario,"Âª"	    ,"ª")
+		auxUsuario = replace(auxUsuario,"Ã“"		,"Ó")
+
+		trataCharPost = auxUsuario
+		
+	end function	
+end class
+%>
